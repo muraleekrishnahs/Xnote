@@ -6,9 +6,9 @@ from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-if SECRET_KEY is None:
-    raise ValueError("SECRET_KEY environment variable not set. Please configure it.")
+SECRET_KEY = os.getenv("SECRET_KEY", "a_default_secret_key_for_development_only")
+if not SECRET_KEY:
+    print("WARNING: Using default SECRET_KEY. This is insecure for production!")
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30

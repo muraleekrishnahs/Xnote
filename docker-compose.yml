@@ -12,7 +12,7 @@ services:
       - SECRET_KEY=${SECRET_KEY}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      test: ["CMD", "curl", "-f", "-v", "http://localhost:8000/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
