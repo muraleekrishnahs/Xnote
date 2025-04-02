@@ -7,7 +7,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-      - backend_data:/app/data
+      - ./data:/app/data
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - PYTHONUNBUFFERED=1
@@ -37,5 +37,4 @@ services:
     restart: unless-stopped
     command: npm run dev
 
-volumes:
-  backend_data: 
+# Removed the backend_data volume as we're now using a bind mount 
