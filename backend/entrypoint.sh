@@ -25,8 +25,23 @@ fi
 echo "Database file permissions:"
 ls -la /app/data/xnote.db
 
+# Print Python version and modules
+echo "Python version:"
+python --version
+echo "Installed packages:"
+pip list
+
 echo "Starting application with command: $@"
 echo "======== END DEBUG INFO ========"
 
+# Check if this is a health check (ps grep doesn't find itself)
+if echo "$@" | grep -q "ps aux"; then
+    echo "Health check detected, running: $@"
+    # Execute the health check command directly
+    eval "$@"
+    exit $?
+fi
+
 # Execute the command passed to the entrypoint script (e.g., uvicorn)
+echo "Executing: $@"
 exec "$@" 
