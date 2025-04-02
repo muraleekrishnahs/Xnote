@@ -46,7 +46,7 @@ The easiest way to run the application is with Docker Compose:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/xnote.git
+git clone https://github.com/muraleekrishnahs/Xnote
 cd xnote
 
 # Start the application
