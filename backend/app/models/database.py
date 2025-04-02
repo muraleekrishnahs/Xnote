@@ -4,7 +4,8 @@ from sqlalchemy.orm import sessionmaker
 import datetime
 import os
 
-DATABASE_URL = "sqlite:///./xnote.db"
+# Use the data volume for the SQLite database
+DATABASE_URL = "sqlite:////app/data/xnote.db"
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
