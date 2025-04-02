@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import notes, auth
 from .models.database import create_tables
-from .services.sentiment_analyzer import download_nltk_data
 
 # Initialize app
 app = FastAPI(
@@ -28,9 +27,6 @@ app.include_router(notes.router)
 async def startup_event():
     # Create database tables if they don't exist
     create_tables()
-    
-    # Download required NLTK data for TextBlob
-    download_nltk_data()
 
 @app.get("/")
 async def root():
