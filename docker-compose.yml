@@ -4,12 +4,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "8081:8000"
     volumes:
       - ./backend:/app
       - backend_data:/app/data
     environment:
-      - SECRET_KEY=your-secret-key
+      - SECRET_KEY=${SECRET_KEY}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/"]
@@ -23,7 +23,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "3031:3000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
