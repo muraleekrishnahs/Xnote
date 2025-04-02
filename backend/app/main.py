@@ -26,14 +26,12 @@ app.include_router(notes.router)
 @app.on_event("startup")
 async def startup_event():
     # Create database tables if they don't exist
-    try:
-        create_tables()
-        print("Database tables created successfully")
-    except Exception as e:
-        print(f"Error creating database tables: {e}")
-        # Continue anyway to allow the API to start
+    create_tables()
 
 @app.get("/")
 async def root():
-    # Super simple root endpoint for health check
-    return {"status": "ok"} 
+    return {
+        "message": "Welcome to Xnote API", 
+        "docs": "/docs",
+        "version": "1.0.0"
+    } 
